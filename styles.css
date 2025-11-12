@@ -654,6 +654,19 @@ button {
     color: var(--color-gray-dark);
 }
 
+/* Role-specific content visibility */
+.content-all,
+.content-resident,
+.content-developer {
+    margin-bottom: var(--spacing-md);
+}
+
+.content-resident[hidden],
+.content-developer[hidden],
+.content-all[hidden] {
+    display: none;
+}
+
 /* Pathway Explanations */
 .pathway-explanation {
     border-left: 4px solid;
