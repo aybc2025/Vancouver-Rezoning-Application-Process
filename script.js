@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeGlossary();
     initializeSearch();
     initializeAccessibility();
+    
+    // Initialize content visibility for default tab (resident)
+    updateContentVisibility('resident');
 });
 
 // ========================================
@@ -65,6 +68,9 @@ function switchTab(tabId) {
     
     // Collapse all expanded panels when switching tabs
     collapseAllPanels();
+    
+    // Show/hide role-specific content
+    updateContentVisibility(tabId);
     
     // Optional: Customize timeline based on tab
     highlightRelevantSteps(tabId);
@@ -121,6 +127,37 @@ function highlightRelevantSteps(tabId) {
         // All steps are relevant for developers
         timelineItems.forEach(item => {
             item.style.opacity = '1';
+        });
+    }
+}
+
+// ========================================
+// Content Visibility by Role
+// ========================================
+function updateContentVisibility(tabId) {
+    // Hide all role-specific content first
+    document.querySelectorAll('.content-resident, .content-developer').forEach(el => {
+        el.hidden = true;
+    });
+    
+    // Show content-all always
+    document.querySelectorAll('.content-all').forEach(el => {
+        el.hidden = false;
+    });
+    
+    // Show content based on selected tab
+    if (tabId === 'resident') {
+        document.querySelectorAll('.content-resident').forEach(el => {
+            el.hidden = false;
+        });
+    } else if (tabId === 'developer') {
+        document.querySelectorAll('.content-developer').forEach(el => {
+            el.hidden = false;
+        });
+    } else if (tabId === 'full') {
+        // In full view, show both resident and developer content
+        document.querySelectorAll('.content-resident, .content-developer').forEach(el => {
+            el.hidden = false;
         });
     }
 }
