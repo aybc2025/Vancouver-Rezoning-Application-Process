@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive guide to Vancouver's rezoning process - understand the steps, timelines, and opportunities to participate">
+    <title>How Rezoning Works - City of Vancouver</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>City of Vancouver</h1>
+                    <span class="subtitle">Rezoning Centre</span>
+                </div>
+                
+                <!-- Search Box -->
+                <div class="search-container">
+                    <input 
+                        type="search" 
+                        id="searchInput" 
+                        placeholder="Search rezoning process..." 
+                        aria-label="Search rezoning information"
+                    >
+                    <button type="button" id="searchBtn" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Glossary Toggle -->
+                <button id="glossaryToggle" class="btn-secondary" aria-label="Toggle glossary">
+                    <i class="fas fa-book"></i> Glossary
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" role="region" aria-labelledby="hero-title">
+        <div class="container">
+            <h2 id="hero-title">How Rezoning Works</h2>
+            <p class="hero-subtitle">The rezoning process has opportunities for your input. Find out who's listening throughout the process and how your input shapes the decision.</p>
+            
+            <!-- Decision Tree CTA -->
+            <button id="openDecisionTree" class="btn-primary btn-large">
+                <i class="fas fa-route"></i> Find Your Pathway
+            </button>
+        </div>
+    </section>
+
+    <!-- Tab Navigation -->
+    <section class="tabs-section" role="region" aria-labelledby="tabs-title">
+        <div class="container">
+            <h3 id="tabs-title" class="sr-only">Choose your perspective</h3>
+            <div class="tabs" role="tablist">
+                <button 
+                    class="tab active" 
+                    role="tab" 
+                    aria-selected="true" 
+                    aria-controls="resident-panel"
+                    id="resident-tab"
+                    data-tab="resident"
+                >
+                    <i class="fas fa-home"></i>
+                    <span>I'm a Resident</span>
+                </button>
+                <button 
+                    class="tab" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="developer-panel"
+                    id="developer-tab"
+                    data-tab="developer"
+                >
+                    <i class="fas fa-building"></i>
+                    <span>I'm a Developer</span>
+                </button>
+                <button 
+                    class="tab" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="full-panel"
+                    id="full-tab"
+                    data-tab="full"
+                >
+                    <i class="fas fa-list-ul"></i>
+                    <span>Show Full Process</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Content Panels -->
+    <div class="tab-content-wrapper">
+        
+        <!-- Resident View -->
+        <div id="resident-panel" class="tab-content active" role="tabpanel" aria-labelledby="resident-tab">
+            <div class="container">
+                <div class="panel-intro">
+                    <h3><i class="fas fa-info-circle"></i> For Residents</h3>
+                    <p>This view highlights where and how you can participate in the rezoning process. Your feedback matters!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developer View -->
+        <div id="developer-panel" class="tab-content" role="tabpanel" aria-labelledby="developer-tab" hidden>
+            <div class="container">
+                <div class="panel-intro">
+                    <h3><i class="fas fa-info-circle"></i> For Developers</h3>
+                    <p>This view focuses on requirements, deadlines, and steps you need to complete for your application.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Process View -->
+        <div id="full-panel" class="tab-content" role="tabpanel" aria-labelledby="full-tab" hidden>
+            <div class="container">
+                <div class="panel-intro">
+                    <h3><i class="fas fa-info-circle"></i> Complete Process</h3>
+                    <p>This view shows the entire rezoning process with all details and pathways.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" role="region" aria-labelledby="timeline-title">
+        <div class="container">
+            <h3 id="timeline-title" class="section-title">The Rezoning Timeline</h3>
+            
+            <!-- Pathway Legend -->
+            <div class="pathway-legend">
+                <div class="legend-item">
+                    <span class="pathway-indicator fast-track"></span>
+                    <span>Fast Track: ODP compliant + 50%+ residential</span>
+                </div>
+                <div class="legend-item">
+                    <span class="pathway-indicator optional-path"></span>
+                    <span>Optional: ODP compliant + &lt;50% residential</span>
+                </div>
+                <div class="legend-item">
+                    <span class="pathway-indicator full-process"></span>
+                    <span>Full Process: Not ODP compliant</span>
+                </div>
+                <div class="legend-item">
+                    <span class="influence-indicator"></span>
+                    <span>Public Participation Opportunity</span>
+                </div>
+            </div>
+
+            <!-- Horizontal Timeline -->
+            <div class="timeline-horizontal">
+                
+                <!-- Before Rezoning -->
+                <div class="timeline-item" data-step="before">
+                    <div class="timeline-marker">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">BEFORE REZONING</span>
+                        <h4>Community Plans & Policies</h4>
+                        <p>Policy planners write plans outlining future community objectives</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-before">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="timeline-item has-influence" data-step="step1">
+                    <div class="timeline-marker">
+                        <span class="step-number">1</span>
+                        <span class="influence-badge" title="Public participation opportunity">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">REZONING</span>
+                        <h4>Step 1: Pre-application & Enquiry</h4>
+                        <p>Rezoning planners provide detailed advice to applicants</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-step1">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-item has-influence" data-step="step2">
+                    <div class="timeline-marker">
+                        <span class="step-number">2</span>
+                        <span class="influence-badge" title="Public participation opportunity">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">REZONING</span>
+                        <h4>Step 2: Application</h4>
+                        <p>Formal review with public input opportunities</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-step2">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-item" data-step="step3">
+                    <div class="timeline-marker">
+                        <span class="step-number">3</span>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">REZONING</span>
+                        <h4>Step 3: Report Writing</h4>
+                        <p>Staff prepare a recommendation for City Council</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-step3">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector pathway-split">
+                        <div class="pathway-fork"></div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-item has-influence" data-step="step4">
+                    <div class="timeline-marker">
+                        <span class="step-number">4</span>
+                        <span class="influence-badge" title="Public participation opportunity">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">REZONING</span>
+                        <h4>Step 4: Council Decision</h4>
+                        <p>City Council considers and decides on the application</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-step4">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="timeline-item" data-step="step5">
+                    <div class="timeline-marker">
+                        <span class="step-number">5</span>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">REZONING</span>
+                        <h4>Step 5: Zoning Enactment</h4>
+                        <p>Council enacts the by-law to change the zoning</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-step5">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="timeline-connector"></div>
+                </div>
+
+                <!-- After Rezoning -->
+                <div class="timeline-item" data-step="after">
+                    <div class="timeline-marker">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="timeline-card">
+                        <span class="step-label">AFTER REZONING</span>
+                        <h4>Development & Building Permit</h4>
+                        <p>Permit coordinators review and issue permits</p>
+                        <button class="btn-expand" aria-expanded="false" aria-controls="detail-after">
+                            <span>Learn More</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Detail Panels (Expandable Content) -->
+    <section class="details-section">
+        <div class="container">
+            
+            <!-- Before Rezoning Details -->
+            <div id="detail-before" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Community Plans and Policies</h3>
+                    <p>Our policy planners write plans and policies that outline future community objectives.</p>
+                    
+                    <h4>What They Do:</h4>
+                    <ul>
+                        <li>Set out the long-term vision and future growth for a community, including its amenities</li>
+                        <li>Guide how land can be developed through zoning, including land uses and what can be built</li>
+                        <li>Outline where we may consider a rezoning in response to City Council priorities</li>
+                    </ul>
+
+                    <div class="callout-box">
+                        <h4><i class="fas fa-lightbulb"></i> Good to Know</h4>
+                        <p>After engaging with the community, policy planners present community plans and policies to Council to decide on.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Timeline:</strong> Varies - community plans are developed over months or years
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1 Details -->
+            <div id="detail-step1" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Step 1: Pre-application and Enquiry</h3>
+                    <p>Our rezoning planners provide detailed advice to potential applicants on early rezoning proposals.</p>
+                    
+                    <h4>What Happens:</h4>
+                    <ul>
+                        <li>Some applicants submit a preliminary rezoning proposal for review before formally applying</li>
+                        <li>All reviews of proposals are informed by Council-approved plans and policies</li>
+                        <li>Rezoning planners respond to the applicant's enquiry</li>
+                        <li>Planners may ask the applicant to hold a pre-application open house to show early design ideas</li>
+                    </ul>
+
+                    <div class="participation-box">
+                        <h4><i class="fas fa-users"></i> Your Voice Matters Here</h4>
+                        <p><strong>Pre-application Open House (if held):</strong> The applicant invites the community to the open house. Your feedback will help inform their next steps.</p>
+                        <p class="note"><em>Note: Pre-application open houses are not listed on the City's website. The applicant invites the community directly.</em></p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Typical Duration:</strong> 1-3 months
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 Details -->
+            <div id="detail-step2" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Step 2: Application</h3>
+                    <p>Our rezoning planners review formal rezoning applications in detail and seek public input.</p>
+                    
+                    <h4>The Process:</h4>
+                    <ul>
+                        <li>The applicant submits a formal rezoning application informed by early advice and Council-approved plans</li>
+                        <li>Rezoning planners notify the public with a project site sign, postcard, and website listing</li>
+                        <li>For most applications, planners hold an online Q&A period to share information and get input</li>
+                        <li>Feedback may also be sought from citizen-led advisory committees</li>
+                    </ul>
+
+                    <div class="participation-box">
+                        <h4><i class="fas fa-users"></i> Your Voice Matters Here</h4>
+                        <p><strong>Online Q&A Period:</strong> Ask questions and provide feedback during the online engagement period.</p>
+                        <p><strong>Shape Your City:</strong> Visit the project page to learn more and submit comments.</p>
+                        <p><strong>Written Feedback:</strong> Send your comments to the rezoning team.</p>
+                    </div>
+
+                    <div class="callout-box">
+                        <h4><i class="fas fa-search"></i> Find a Rezoning Application</h4>
+                        <p>Search for active rezoning applications on Shape Your City or the City's rezoning website.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Typical Duration:</strong> 3-6 months
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 Details -->
+            <div id="detail-step3" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Step 3: Report Writing</h3>
+                    <p>Our staff make a recommendation to City Council about rezoning applications.</p>
+                    
+                    <h4>A: Report Writing</h4>
+                    <p>Rezoning planners write a report for City Council that:</p>
+                    <ul>
+                        <li>Describes the application</li>
+                        <li>Summarizes all the feedback received</li>
+                        <li>Recommends to refer the application to a public hearing or Council meeting (if applicable)</li>
+                        <li>Recommends whether to approve or refuse the application</li>
+                    </ul>
+
+                    <h4>B: Pathways to Council</h4>
+                    
+                    <div class="pathway-explanation fast-track">
+                        <h5><i class="fas fa-forward"></i> Fast Track Path</h5>
+                        <p><strong>For applications that are:</strong></p>
+                        <ul>
+                            <li>Consistent with an Official Development Plan (ODP)</li>
+                            <li>Include significant residential use (50%+ of floor area)</li>
+                        </ul>
+                        <p><strong>Result:</strong> Council meeting scheduled - no public hearing required.</p>
+                    </div>
+
+                    <div class="pathway-explanation optional-path">
+                        <h5><i class="fas fa-code-branch"></i> Optional Path</h5>
+                        <p><strong>For applications that are:</strong></p>
+                        <ul>
+                            <li>Consistent with an ODP</li>
+                            <li>Less than 50% residential (majority industrial, office, or institutional)</li>
+                        </ul>
+                        <p><strong>Result:</strong> Council decides: public hearing OR Council meeting.</p>
+                    </div>
+
+                    <div class="pathway-explanation full-process">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Full Process Path</h5>
+                        <p><strong>For applications that are:</strong></p>
+                        <ul>
+                            <li>NOT consistent with an ODP</li>
+                        </ul>
+                        <p><strong>Result:</strong> Public hearing required.</p>
+                    </div>
+
+                    <h4>C: Referral to Public Hearing</h4>
+                    <p>For referral reports, rezoning planners work with City Clerks to add the report to a Council meeting agenda. At this meeting, Council decides whether to refer the application to a future public hearing or Council meeting.</p>
+                    
+                    <div class="callout-box important">
+                        <h4><i class="fas fa-gavel"></i> Important Note</h4>
+                        <p>During the referral step, Council must not discuss the rezoning application with the applicant or the public. This ensures Council doesn't receive information that the public and applicant don't have before deciding.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Typical Duration:</strong> 2-4 months
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 Details -->
+            <div id="detail-step4" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Step 4: Council Decision</h3>
+                    <p>City Council must consider and decide on all rezoning applications (all zoning by-law changes) and heritage designations, according to the Vancouver Charter.</p>
+                    
+                    <h4>Notification:</h4>
+                    <p>Rezoning planners notify the public with:</p>
+                    <ul>
+                        <li>Project site sign</li>
+                        <li>Postcard to neighbors</li>
+                        <li>Website listing</li>
+                    </ul>
+                    <p>Meeting coordinators usually publish the meeting agenda one week before the meeting.</p>
+
+                    <h4>At the Public Hearing or Council Meeting:</h4>
+                    <p>Council's role is to listen to the public when deciding on a rezoning application. For each agenda item:</p>
+                    <ol>
+                        <li>The rezoning application is summarized along with correspondence (public feedback) received</li>
+                        <li>Rezoning planners present the application and recommendation to Council</li>
+                        <li>The applicant may also present to Council</li>
+                        <li>If a public hearing, registered members of the public speak to Council</li>
+                        <li>Council discusses the application</li>
+                        <li>The mayor calls for a vote on the motion to approve, amend, or refuse the application</li>
+                    </ol>
+
+                    <div class="participation-box">
+                        <h4><i class="fas fa-users"></i> Your Voice Matters Here</h4>
+                        <p><strong>You can give feedback in two ways:</strong></p>
+                        <ol>
+                            <li><strong>Send comments or petition online:</strong> Your name and comments will be published in the meeting agenda.</li>
+                            <li><strong>Request to speak at the meeting:</strong> Your name and comments will be published in the meeting records.</li>
+                        </ol>
+                        <p>Your feedback will help inform Council's discussion and decision on the rezoning application.</p>
+                    </div>
+
+                    <div class="callout-box">
+                        <h4><i class="fas fa-calendar-alt"></i> Stay Informed</h4>
+                        <p>View Council meetings and agendas, get notified about upcoming meetings, and follow along on social media.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Meeting Duration:</strong> Varies - public hearings can last several hours
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 Details -->
+            <div id="detail-step5" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Step 5: Zoning Enactment</h3>
+                    <p>City Council enacts a by-law to change the zoning.</p>
+                    
+                    <h4>What Needs to Happen:</h4>
+                    <ul>
+                        <li>The applicant needs to meet all legal conditions of rezoning</li>
+                        <li>This includes paying any required community amenity contributions</li>
+                        <li>This work usually happens in the months after rezoning applications are approved</li>
+                    </ul>
+
+                    <h4>Final Steps:</h4>
+                    <p>When all conditions are met:</p>
+                    <ol>
+                        <li>City lawyers liaise with rezoning planners and meeting coordinators to confirm enactment</li>
+                        <li>The zoning by-law is added to a Council meeting agenda</li>
+                        <li>Council votes to enact the zoning by-law as the final step in rezoning</li>
+                    </ol>
+
+                    <div class="callout-box">
+                        <h4><i class="fas fa-check-circle"></i> Completion</h4>
+                        <p>Once the zoning by-law is enacted, the rezoning process is complete. The applicant can then apply for development and building permits.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Typical Duration:</strong> 3-12 months (depends on conditions)
+                    </div>
+                </div>
+            </div>
+
+            <!-- After Rezoning Details -->
+            <div id="detail-after" class="detail-panel" hidden>
+                <div class="detail-content">
+                    <h3>Development and Building Permit</h3>
+                    <p>Our permit coordinators review permit applications and issue development and building permits.</p>
+                    
+                    <h4>Development Permit:</h4>
+                    <p>After a rezoning application is approved, the applicant can apply for a development permit.</p>
+                    <ul>
+                        <li>Development permits ensure the detailed building design complies with the Zoning and Development By-law</li>
+                        <li>The by-law regulates: land uses, building location, maximum height and size, and other provisions necessary for good city building</li>
+                        <li>The design is informed by conditions of approval from the rezoning</li>
+                        <li>Permit coordinators issue the permit once all conditions are met</li>
+                    </ul>
+
+                    <h4>Building Permit:</h4>
+                    <p>Once the development permit is issued, the applicant can apply for a building permit to start construction.</p>
+                    <ul>
+                        <li>Building permits ensure the building complies with the Vancouver Building By-law</li>
+                        <li>This by-law regulates life safety, liveability, accessibility, and sustainability</li>
+                    </ul>
+
+                    <div class="callout-box">
+                        <h4><i class="fas fa-search"></i> Find a Development Permit Application</h4>
+                        <p>Search for active development permit applications on the City's website.</p>
+                    </div>
+
+                    <div class="estimated-time">
+                        <i class="fas fa-clock"></i>
+                        <strong>Typical Duration:</strong> 3-6 months for development permit, 2-4 months for building permit
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Decision Tree Modal -->
+    <div id="decisionTreeModal" class="modal" role="dialog" aria-labelledby="decision-tree-title" aria-modal="true" hidden>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close decision tree">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 id="decision-tree-title">Find Your Pathway</h2>
+            <p class="modal-subtitle">Answer a few questions to understand which process path applies to your situation.</p>
+            
+            <div class="decision-tree">
+                
+                <!-- Question 1 -->
+                <div class="decision-step active" data-step="1">
+                    <h3>Is your proposal consistent with an Official Development Plan (ODP)?</h3>
+                    <p class="helper-text">An ODP is a Council-adopted plan that outlines land use, density, and building form for a specific area.</p>
+                    <div class="decision-buttons">
+                        <button class="btn-decision" data-answer="yes" data-next="2">
+                            <i class="fas fa-check"></i> Yes
+                        </button>
+                        <button class="btn-decision" data-answer="no" data-result="full-process">
+                            <i class="fas fa-times"></i> No
+                        </button>
+                        <button class="btn-decision secondary" data-answer="unsure" data-result="check-odp">
+                            <i class="fas fa-question"></i> I'm not sure
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="decision-step" data-step="2">
+                    <h3>Is more than 50% of the gross floor area residential?</h3>
+                    <p class="helper-text">Calculate the total proposed floor area dedicated to residential use (apartments, condos, townhouses) versus other uses (commercial, office, industrial).</p>
+                    <div class="decision-buttons">
+                        <button class="btn-decision" data-answer="yes" data-result="fast-track">
+                            <i class="fas fa-check"></i> Yes (50%+ residential)
+                        </button>
+                        <button class="btn-decision" data-answer="no" data-result="optional-path">
+                            <i class="fas fa-times"></i> No (<50% residential)
+                        </button>
+                    </div>
+                    <button class="btn-back" onclick="goBackDecision()">
+                        <i class="fas fa-arrow-left"></i> Go Back
+                    </button>
+                </div>
+
+                <!-- Results -->
+                
+                <!-- Fast Track Result -->
+                <div class="decision-result" data-result="fast-track">
+                    <div class="result-icon fast-track">
+                        <i class="fas fa-forward"></i>
+                    </div>
+                    <h3>Fast Track Path</h3>
+                    <p><strong>Your proposal qualifies for the streamlined process:</strong></p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> No public hearing required</li>
+                        <li><i class="fas fa-check-circle"></i> Decision at Council meeting</li>
+                        <li><i class="fas fa-check-circle"></i> Typically faster approval timeline</li>
+                    </ul>
+                    <div class="next-steps">
+                        <h4>What This Means:</h4>
+                        <p>Since your proposal is consistent with the ODP and is primarily residential, Council will consider it at a Council meeting without a public hearing. However, there will still be opportunities for public input during the application stage.</p>
+                    </div>
+                    <button class="btn-primary" onclick="closeDecisionTree()">
+                        <i class="fas fa-arrow-right"></i> View Timeline
+                    </button>
+                </div>
+
+                <!-- Optional Path Result -->
+                <div class="decision-result" data-result="optional-path">
+                    <div class="result-icon optional-path">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Optional Path</h3>
+                    <p><strong>Your proposal may follow either route:</strong></p>
+                    <ul>
+                        <li><i class="fas fa-code-branch"></i> Council will decide: public hearing OR Council meeting</li>
+                        <li><i class="fas fa-clock"></i> Timeline depends on Council's decision</li>
+                    </ul>
+                    <div class="next-steps">
+                        <h4>What This Means:</h4>
+                        <p>Your proposal is consistent with the ODP but is less than 50% residential. Council has the option to refer it to a public hearing or proceed directly to a Council meeting for decision. You'll be notified which path is chosen.</p>
+                    </div>
+                    <button class="btn-primary" onclick="closeDecisionTree()">
+                        <i class="fas fa-arrow-right"></i> View Timeline
+                    </button>
+                </div>
+
+                <!-- Full Process Result -->
+                <div class="decision-result" data-result="full-process">
+                    <div class="result-icon full-process">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Full Process Path</h3>
+                    <p><strong>Your proposal requires a public hearing:</strong></p>
+                    <ul>
+                        <li><i class="fas fa-gavel"></i> Public hearing required</li>
+                        <li><i class="fas fa-users"></i> Full public participation opportunities</li>
+                        <li><i class="fas fa-clock"></i> Longer approval timeline</li>
+                    </ul>
+                    <div class="next-steps">
+                        <h4>What This Means:</h4>
+                        <p>Since your proposal is not consistent with the ODP, it must go through a public hearing where community members can speak directly to Council. This ensures thorough public input for proposals that vary from adopted plans.</p>
+                    </div>
+                    <button class="btn-primary" onclick="closeDecisionTree()">
+                        <i class="fas fa-arrow-right"></i> View Timeline
+                    </button>
+                </div>
+
+                <!-- Check ODP Result -->
+                <div class="decision-result" data-result="check-odp">
+                    <div class="result-icon info">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3>Check If Your Area Has an ODP</h3>
+                    <p>Not all areas of Vancouver currently have an Official Development Plan.</p>
+                    <div class="next-steps">
+                        <h4>Next Steps:</h4>
+                        <ul>
+                            <li><i class="fas fa-map-marked-alt"></i> Check the ODP maps to see if your property is in an ODP area</li>
+                            <li><i class="fas fa-phone"></i> Contact the Rezoning Centre: <a href="mailto:rezoning@vancouver.ca">rezoning@vancouver.ca</a></li>
+                            <li><i class="fas fa-calendar"></i> The citywide interim ODP will be available in 2026</li>
+                        </ul>
+                    </div>
+                    <button class="btn-primary" onclick="closeDecisionTree()">
+                        <i class="fas fa-arrow-right"></i> View Timeline
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Glossary -->
+    <aside id="glossary" class="glossary-panel" role="complementary" aria-labelledby="glossary-title" hidden>
+        <div class="glossary-header">
+            <h3 id="glossary-title"><i class="fas fa-book"></i> Glossary</h3>
+            <button class="glossary-close" aria-label="Close glossary">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="glossary-search">
+            <input type="search" id="glossarySearch" placeholder="Search terms..." aria-label="Search glossary terms">
+        </div>
+        <div class="glossary-content">
+            
+            <div class="glossary-item" data-term="odp official development plan">
+                <h4>Official Development Plan (ODP)</h4>
+                <p>A Council-adopted plan that guides development in a specific area. It outlines land use, density, building form, and community amenities for that area.</p>
+            </div>
+
+            <div class="glossary-item" data-term="rezoning zoning">
+                <h4>Rezoning</h4>
+                <p>The process of changing the zoning designation of a property to allow for different types or scales of development than currently permitted.</p>
+            </div>
+
+            <div class="glossary-item" data-term="dap development approval procedure">
+                <h4>Development Approval Procedure (DAP) By-law</h4>
+                <p>A by-law that establishes procedures for rezoning and ODP amendment applications. Effective June 9, 2025.</p>
+            </div>
+
+            <div class="glossary-item" data-term="public hearing">
+                <h4>Public Hearing</h4>
+                <p>A formal meeting where Council hears from the public before making a decision on a rezoning application. Required for applications not consistent with an ODP.</p>
+            </div>
+
+            <div class="glossary-item" data-term="council meeting">
+                <h4>Council Meeting</h4>
+                <p>A regular meeting of City Council where decisions are made on various City matters, including some rezoning applications.</p>
+            </div>
+
+            <div class="glossary-item" data-term="development permit">
+                <h4>Development Permit</h4>
+                <p>A permit that ensures a building's detailed design complies with zoning regulations. Required before construction can begin.</p>
+            </div>
+
+            <div class="glossary-item" data-term="building permit">
+                <h4>Building Permit</h4>
+                <p>A permit that ensures a building meets safety, accessibility, and sustainability standards. Required to start construction.</p>
+            </div>
+
+            <div class="glossary-item" data-term="enquiry pre-application">
+                <h4>Rezoning Enquiry</h4>
+                <p>A formal preliminary proposal submitted before a full application. Required for proposals that significantly depart from policy or an ODP.</p>
+            </div>
+
+            <div class="glossary-item" data-term="community amenity contribution cac">
+                <h4>Community Amenity Contribution (CAC)</h4>
+                <p>Financial or in-kind contributions made by developers to help fund community amenities and infrastructure as a condition of rezoning.</p>
+            </div>
+
+            <div class="glossary-item" data-term="zoning by-law">
+                <h4>Zoning and Development By-law</h4>
+                <p>The by-law that regulates land use, building height, density, and other development standards across Vancouver.</p>
+            </div>
+
+            <div class="glossary-item" data-term="shape your city">
+                <h4>Shape Your City</h4>
+                <p>The City's online engagement platform where you can view active rezoning applications, ask questions, and provide feedback.</p>
+            </div>
+
+            <div class="glossary-item" data-term="applicant developer">
+                <h4>Applicant</h4>
+                <p>The property owner or their authorized representative who submits a rezoning application.</p>
+            </div>
+
+            <div class="glossary-item" data-term="enactment">
+                <h4>Zoning Enactment</h4>
+                <p>The final step where Council formally passes the by-law to change the zoning, after all conditions have been met.</p>
+            </div>
+
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact the Rezoning Centre</h4>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rezoning@vancouver.ca">rezoning@vancouver.ca</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">Official Development Plans</a></li>
+                        <li><a href="#" target="_blank">Shape Your City</a></li>
+                        <li><a href="#" target="_blank">Development Approval Procedure By-law</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to notifications about rezoning applications in your area.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 City of Vancouver. All rights reserved.</p>
+                <p class="disclaimer">This is an educational tool. For official information, visit vancouver.ca</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
